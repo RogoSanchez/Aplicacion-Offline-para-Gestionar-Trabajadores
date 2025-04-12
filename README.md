@@ -1,6 +1,5 @@
-# rogos
-
-A new Flutter project.
+# Aplicacion offline para gestionar trabajadores 
+# Flutter + Sqflite que permite gestionar los pagos y las incidencias de dichos trabajadores algo sencillo
 
 ## Getting Started
 
