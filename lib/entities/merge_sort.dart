@@ -1,7 +1,7 @@
-//import 'package:rogos/entities/worker_class.dart';
+import 'package:Trabajadores/entities/worker_class.dart';
 
-/*void MergeSort(List<Worker>arr){
-  List<Worker>aux=List.filled(arr.length, Worker("",0,'','',true));
+void MergeSort(List<Worker>arr){
+  List<Worker>aux=List.filled(arr.length, Worker(null,"",0,'','',0));
   mergeSortAux(arr,0,arr.length-1,aux);
 }
 
@@ -48,4 +48,4 @@ void merge(List<Worker> arr, int left, int right, List<Worker> aux) {
       }
     
   }
-}*/
+}

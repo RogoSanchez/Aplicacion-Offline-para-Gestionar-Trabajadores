@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Trabajadores/entities/databaseHelper.dart';
-//import 'package:rogos/entities/merge_sort.dart';
+import 'package:Trabajadores/entities/merge_sort.dart';
 import 'package:Trabajadores/entities/worker_class.dart';
 
 
@@ -28,6 +28,7 @@ class WorkerScreenProvider extends ChangeNotifier
   Future <void>updateWorkerList() async{
 
     _ListWorkers=await DbWorker.getAllWorkers();
+    MergeSort(ListWorkers);
     notifyListeners();
   }
 
@@ -69,7 +70,10 @@ class WorkerScreenProvider extends ChangeNotifier
 
   }
 
-
+  void SortingWorkers(){
+    MergeSort(ListWorkers);
+    notifyListeners();
+  }
   void wnotifyListeners(){
     notifyListeners();
   }
