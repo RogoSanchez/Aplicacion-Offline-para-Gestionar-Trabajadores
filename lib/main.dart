@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rogos/screens/app.dart';
+import 'package:Trabajadores/screens/app.dart';
 
 void main()async{
   

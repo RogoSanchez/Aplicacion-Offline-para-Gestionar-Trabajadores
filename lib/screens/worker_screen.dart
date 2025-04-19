@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rogos/providers/worker_screen_provider.dart';
+import 'package:Trabajadores/providers/worker_screen_provider.dart';
 import 'package:provider/provider.dart';
 
 TextEditingController worker_controller = TextEditingController();
@@ -11,7 +11,9 @@ class WorkerScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     final watch=context.watch<WorkerScreenProvider>();
     final read=context.read<WorkerScreenProvider>();
-
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+      read.updateIncidencesList(index); // Método para cargar incidencias
+    });
 
     return Scaffold(
       
@@ -29,8 +31,9 @@ class WorkerScreen extends StatelessWidget{
                             ),
                             TextButton(onPressed: (){
                               if (worker_controller.value.text.isNotEmpty) {
-                                read.ListWorkers[index].Incidencias.add(worker_controller.text);
+                                read.ListWorkers[index].Incidencias.add((read.ListWorkers[index].get_id.toString(),worker_controller.text));
                                 read.AddIncidencia(index);
+                                read.updateIncidencesList(index);
                               read.wnotifyListeners();
                               worker_controller.clear();
                               }
@@ -125,7 +128,7 @@ class WorkerScreen extends StatelessWidget{
                        },
                       );
                      },
-                      title: Text("Proximo pago a realizar: ${watch.ListWorkers[index].get_fecha.toString()}"),
+                      title: Text("Proximo cobro: ${watch.ListWorkers[index].get_fecha.toString()}"),
                       ),
                      )
                     ],
@@ -159,24 +162,21 @@ class WorkerScreen extends StatelessWidget{
                        },
                       );
                      },
-                      title: Text("Proximo pago realizado :  ${watch.ListWorkers[index].get_ultimo_cobro.toString()}"),
+                      title: Text("Ultimo cobro:  ${watch.ListWorkers[index].get_ultimo_cobro.toString()}"),
                       ),
                      )
                     ],
                   ),
                   SizedBox(
-                    
-                    width: 200,
-                    height: 200,
-                    
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
+                     
                       itemCount: context.watch<WorkerScreenProvider>().ListWorkers[index].Incidencias.length,
                       itemBuilder: (BuildContext context, int indexI){
                       return ListTile(
-                        title: Text(context.watch<WorkerScreenProvider>().ListWorkers[index].Incidencias[indexI]),
+                        title: Text(context.watch<WorkerScreenProvider>().ListWorkers[index].Incidencias[indexI].$2),
                       );
-                    
-                    
                     }),
                   )
                   ],
@@ -186,4 +186,4 @@ class WorkerScreen extends StatelessWidget{
               ),
              );
             } 
-  } 
+  }

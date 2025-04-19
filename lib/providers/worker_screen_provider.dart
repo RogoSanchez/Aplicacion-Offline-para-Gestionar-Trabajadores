@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rogos/entities/databaseHelper.dart';
+import 'package:Trabajadores/entities/databaseHelper.dart';
 //import 'package:rogos/entities/merge_sort.dart';
-import 'package:rogos/entities/worker_class.dart';
+import 'package:Trabajadores/entities/worker_class.dart';
 
 
 
@@ -19,16 +19,22 @@ class WorkerScreenProvider extends ChangeNotifier
       Worker Nuevo=Worker(null, controlador.text,0,'No definido','No definido',0);
       
       await DbWorker.insert(Nuevo);
-      updateList();
+      updateWorkerList();
       notifyListeners();
     
     }
   
-  //Actualizar lista 
-  Future <void>updateList() async{
+  //Actualizar lista de trabajadores 
+  Future <void>updateWorkerList() async{
 
     _ListWorkers=await DbWorker.getAllWorkers();
     notifyListeners();
+  }
+
+  Future<void>updateIncidencesList(int index) async{
+    _ListWorkers[index].Incidencias= await DbWorker.getAllIncidences(_ListWorkers[index].get_id);
+    notifyListeners();
+
   }
 
   //Actualiza el estado del trabajador
@@ -50,7 +56,7 @@ class WorkerScreenProvider extends ChangeNotifier
       for (var i = 0; i < DeleteNames.length; i++) {
         await DbWorker.delete(DeleteNames[i]);  
       }
-    updateList();
+    updateWorkerList();
   }
   
   Future<void> ModifyWorker(int index,String Campo, String edited)async{

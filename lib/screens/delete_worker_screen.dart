@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rogos/providers/worker_screen_provider.dart';
-import 'package:rogos/screens/worker_screen.dart';
+import 'package:Trabajadores/providers/worker_screen_provider.dart';
+import 'package:Trabajadores/screens/worker_screen.dart';
 
 class delete_worker_page extends StatelessWidget {
   const delete_worker_page({super.key});

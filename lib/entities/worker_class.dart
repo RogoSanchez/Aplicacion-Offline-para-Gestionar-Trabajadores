@@ -6,7 +6,7 @@ late int _salario;
 late String _proximo_cobro;
 late String _ultimo_cobro;
 late int _estado;
-List<String> Incidencias=[];
+List<(String,String)> Incidencias=[];
 
 Worker(int? id, String nombre, int salario, String proximo_cobro,String ultimo_cobro,int status){
   _id=id;
@@ -16,6 +16,7 @@ Worker(int? id, String nombre, int salario, String proximo_cobro,String ultimo_c
   _ultimo_cobro=ultimo_cobro;
   _estado=status;
 }
+
 
 Map<String,dynamic> to_map (){
   return {
@@ -30,11 +31,14 @@ Map<String,dynamic> to_map (){
 
 Map<String,dynamic> Incidencias_to_map (){
   return {
-    'id':_id,
+    
     'worker_id':_id,
-    'Hecho':get_incidencias.last
+    'Hecho':get_incidencias.last.$2
   };
 }
+
+
+
 factory Worker.fromMap(Map<String, dynamic> map) {
     return Worker(
       map['id'],
@@ -84,7 +88,7 @@ int get get_status{
 String get get_ultimo_cobro{
   return _ultimo_cobro;
 }
-List<String> get get_incidencias{
+List<(String,String)> get get_incidencias{
   return Incidencias;
 }
 }

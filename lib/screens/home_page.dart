@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rogos/providers/dark_mode_provider.dart';
-import 'package:rogos/providers/worker_screen_provider.dart';
-import 'package:rogos/screens/delete_worker_screen.dart';
-import 'package:rogos/screens/worker_screen.dart';
+import 'package:Trabajadores/providers/worker_screen_provider.dart';
+import 'package:Trabajadores/screens/delete_worker_screen.dart';
+import 'package:Trabajadores/providers/dark_mode_provider.dart';
+import 'package:Trabajadores/screens/worker_screen.dart';
 
 class homepage extends StatelessWidget{
    homepage({super.key});
@@ -12,6 +12,9 @@ class homepage extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<WorkerScreenProvider>().updateWorkerList();
+    });
     return SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -27,7 +30,7 @@ class homepage extends StatelessWidget{
               elevation: 5,
             actions: [
               IconButton(onPressed: (){
-                context.read<WorkerScreenProvider>().updateList();
+                context.read<WorkerScreenProvider>().updateWorkerList();
             }, icon: Icon(Icons.replay_outlined))
             ],
           ),

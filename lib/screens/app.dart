@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rogos/providers/dark_mode_provider.dart';
-import 'package:rogos/providers/worker_screen_provider.dart';
-import 'package:rogos/screens/home_page.dart';
+import 'package:Trabajadores/providers/dark_mode_provider.dart';
+import 'package:Trabajadores/providers/worker_screen_provider.dart';
+import 'package:Trabajadores/screens/home_page.dart';
 
 class Pagos extends StatelessWidget {
   const Pagos({super.key});

@@ -1,4 +1,4 @@
-import 'package:rogos/entities/worker_class.dart';
+import 'package:Trabajadores/entities/worker_class.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -14,7 +14,7 @@ class DbWorker {
       );
       await db.execute(
         '''CREATE TABLE Discipline (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,worker_id , Hecho TEXT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,worker_id INTEGER, Hecho TEXT,
         FOREIGN KEY (worker_id) REFERENCES worker (id) ON DELETE CASCADE
         )'''
       );
@@ -41,6 +41,21 @@ class DbWorker {
     return List.generate(maps.length, (i) {
       return Worker.fromMap(maps[i]);
     });
+  }
+  static Future<List<(String,String)>> getAllIncidences(int? worker_id) async{
+    final Database database=await DbWorker.openDB();
+    final List<Map<String,dynamic>> maps=await database.query(
+    'Discipline',
+    where: 'worker_id = ?',
+    whereArgs: [worker_id]
+    
+    );
+    
+    return List.generate(maps.length, (i) {
+      
+      return (maps[i]['worker_id'].toString(), maps[i]['Hecho']);
+      
+   });
   }
 
   static Future<Worker?> getWorker(String nombre) async {
