@@ -1,5 +1,5 @@
 # Aplicacion offline para gestionar trabajadores 
-# Flutter + SQlite que permite gestionar los pagos y las incidencias de dichos trabajadores algo sencillo
+# Flutter + SQlite que permite gestionar los pagos y las incidencias de dichos trabajadores (algo sencillo)
 
 La aplicacion aun no esta terminada
 
